@@ -19,13 +19,16 @@ fi
 apt-get autoremove -y && apt-get autoclean -y
 #echo "deb http://archive.raspberrypi.org/debian/ jessie main" > /etc/apt/sources.list
 #wget "http://archive.raspberrypi.org/debian/raspberrypi.gpg.key"
-# wget https://archive.raspbian.org/raspbian.public.key -O public.key
-# apt-key add public.key
 #sudo apt-key add raspberrypi.gpg.key
-apt-get install miredo libminiupnpc10 -y
+#apt-get install libraspberrypi-bin librasberrypi-dev
+apt-get install miredo libminiupnpc10 ntpdate -y
 apt-get update && apt-get upgrade -y && apt-get -f install -y
 dpkg --configure --pending
 
+# Set ownership to parts of the welcome screen
+chown :ocadmin /etc/update-motd.d/*
+
+# Get Script to show WAN IP and set alias cmd to WAN
 wget -q https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/wan.sh -P /home/ocadmin/
 echo 'alias WAN="sudo bash /home/ocadmin/wan.sh"' > /home/ocadmin/.bashrc
 echo 'alias WAN="bash /home/ocadmin/wan.sh"' > /root/.bashrc
@@ -49,17 +52,6 @@ dpkg-reconfigure keyboard-configuration
 echo
 clear
 
-# Remove locale error over ssh in other language
-#sed -i 's|    SendEnv LANG LC_*|#   SendEnv LANG LC_*|g' /etc/ssh/ssh_config
-#sed -i 's|AcceptEnv LANG LC_*|#AcceptEnv LANG LC_*|g' /etc/ssh/sshd_config
-
-# Change NTP server
-#sed -i 's|server 0.ubuntu.pool.ntp.org|server 0.pool.ntp.org|g' /etc/ntp.conf
-#sed -i 's|server 1.ubuntu.pool.ntp.org|server 1.pool.ntp.org|g' /etc/ntp.conf
-#sed -i 's|server 2.ubuntu.pool.ntp.org|server 2.pool.ntp.org|g' /etc/ntp.conf
-#sed -i 's|server 3.ubuntu.pool.ntp.org|server 3.pool.ntp.org|g' /etc/ntp.conf
-#/etc/init.d/ntp restart
-
 # Change Timezone
 echo "Current Timezone is Europe/Amsterdam"
 echo "You must change timezone to your timezone"
@@ -70,9 +62,6 @@ dpkg-reconfigure tzdata
 echo
 sleep 3
 clear
-
-# Ask overclock
-#bash $SCRIPTS/set_overclock.sh
 
 # Change login scripts
 sed -i 's|#bash /var/scripts/instructions.sh|bash /var/scripts/instructions.sh|g' /home/ocadmin/.profile
