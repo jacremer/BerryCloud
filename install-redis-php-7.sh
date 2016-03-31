@@ -53,6 +53,7 @@ wget -q http://download.redis.io/releases/redis-stable.tar.gz -P $SCRIPTS && tar
 mv $SCRIPTS/redis-stable $SCRIPTS/redis
 
 # Install Redis
+cd $SCRIPTS/redis && make
 make install
 cd utils && yes "" | sudo ./install_server.sh 
 if [[ $? > 0 ]]
