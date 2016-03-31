@@ -1,0 +1,25 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+sleep 10
+systemctl daemon-reload
+# Get a fresh RC.LOCAL
+    if [ -f /var/scripts/initial.sh ];
+    then
+        echo "initial.sh exists"
+    else
+        wget --no-check-certificate https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/initial.sh -P /var/scripts
+        chmod +x /var/scripts/initial.sh
+        bash /var/scripts/initial.sh
+    fi
+exit 0
+
