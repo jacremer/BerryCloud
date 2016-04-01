@@ -746,14 +746,22 @@ temp_limit=85
 ##
 ##     Default 700.
 ##
+[pi2]
 arm_freq=1000
+[pi3]
+arm_freq=1200
+[all]
 
 ## arm_freq_min
 ##     Minimum frequency of ARM in MHz (used for dynamic clocking).
 ##
 ##     Default 700.
 ##
+[pi2]
 arm_freq_min=700
+[pi3]
+arm_freq_min=900
+[all]
 
 ## gpu_freq
 ##     Sets core_freq, h264_freq, isp_freq, v3d_freq together.
