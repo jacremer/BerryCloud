@@ -1,4 +1,5 @@
-# ownCloud on your RaspberryPI with BerryCloud
+# ownCloud on your RaspberryPI2 with BerryCloud
+Note: no RaspberryPI3 support just yet!
 
 Originated from the ownCloud & Western Digital collaboration to make an out of the box safe cloud storage available to the public. This build has not been selected to be distributed, nevertheless we decided to finish the build.
 
