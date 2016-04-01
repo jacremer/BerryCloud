@@ -26,7 +26,7 @@ if 		[ -d $WWW ];
       		mkdir $WWW
 fi
 
-# Get OC update script
+# Get RPI version script
 if              [ -f $SCRIPTS/rpi_version.sh ];
         then
                 echo "rpi_version.sh exists"
@@ -43,7 +43,7 @@ else
         sleep 1
 fi
 
-# Get OC update script
+# Get Fail2ban script
 if 		[ -f $SCRIPTS/fail2ban.sh ];
         then
                 echo "fail2ban.sh exists"
@@ -77,7 +77,7 @@ else
 	sleep 1
 fi
 
-# Overclock
+# Get Dyndns script 
 if 		[ -f $SCRIPTS/dyndns.sh ];
         then
                 echo "dyndns.sh exists"
@@ -178,7 +178,7 @@ else
 	echo "Downloaded pre_setup.sh."
 	sleep 1
 fi
-#
+
 # Welcome message after login (change in /home/ocadmin/.profile
 if 		[ -f $SCRIPTS/instruction.sh ];
         then
