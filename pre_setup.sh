@@ -25,6 +25,9 @@ apt-get install miredo libminiupnpc10 ntpdate -y
 apt-get update && apt-get upgrade -y && apt-get -f install -y
 dpkg --configure --pending
 
+# Ask if user has an RPI2 or #
+bash $SCRIPTS/rpi_version.sh
+
 # Set ownership to parts of the welcome screen
 chown :ocadmin /etc/update-motd.d/*
 
