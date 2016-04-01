@@ -18,8 +18,8 @@ echo "ownCloud: https://$ADDRESS/owncloud"
 echo -e "\e[32m"###################################################################"\e[0m"
 bash $DIR/50-landscape-sysinfo
 echo -e "\e[32m"###################################################################"\e[0m"
-sudo bash $DIR/90-updates-available
-sudo bash $DIR/91-release-upgrade
-sudo bash $DIR/98-fsck-at-reboot
-sudo bash $DIR/98-reboot-required
+bash $DIR/90-updates-available
+bash $DIR/91-release-upgrade
+bash $DIR/98-fsck-at-reboot
+bash $DIR/98-reboot-required
 exit 0
