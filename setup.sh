@@ -473,15 +473,15 @@ fi
 
 
 # Download and install Logreader
-if [ -d $OCPATH/apps/logreader ]; then
-sleep 1
-else
-wget https://github.com/icewind1991/logreader/archive/master.zip -P $OCPATH/apps
-unzip -q $OCPATH/apps/master.zip -d $OCPATH/apps
-cd $OCPATH/apps
-rm master.zip
-mv logreader-master/ logreader/
-fi
+#if [ -d $OCPATH/apps/logreader ]; then
+#sleep 1
+#else
+#wget https://github.com/icewind1991/logreader/archive/master.zip -P $OCPATH/apps
+#unzip -q $OCPATH/apps/master.zip -d $OCPATH/apps
+#cd $OCPATH/apps
+#rm master.zip
+#mv logreader-master/ logreader/
+#fi
 
 # Enable Logreader
 if [ -d $OCPATH/apps/logreader ]; then

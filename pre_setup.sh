@@ -119,7 +119,7 @@ function ask_yes_or_no() {
         *)     echo "no" ;;
     esac
 }
-if [[ "yes" == $(ask_yes_or_no "Do you have an external Harddisk plugged in? (Recommended, SSD, powered external drive)") ]]
+if [[ "yes" == $(ask_yes_or_no "Do you have an external Harddisk plugged in? (Recommended, SSD, powered external drive) ALL DATA WILL BE LOST AFTER THE FORMAT") ]]
 then
 
 bash $SCRIPTS/external_usb.sh

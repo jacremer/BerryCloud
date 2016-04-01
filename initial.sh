@@ -27,6 +27,23 @@ if 		[ -d $WWW ];
 fi
 
 # Get OC update script
+if              [ -f $SCRIPTS/rpi_version.sh ];
+        then
+                echo "rpi_version.sh exists"
+        else
+                wget -q --no-check-certificate $REPO/rpi_version.sh -P $SCRIPTS
+fi
+if [[ $? > 0 ]]
+then
+        echo "Download of scripts failed. System will reboot in 10 seconds..."
+        sleep 10
+        reboot
+else
+        echo "Downloaded rpi_version.sh."
+        sleep 1
+fi
+
+# Get OC update script
 if 		[ -f $SCRIPTS/fail2ban.sh ];
         then
                 echo "fail2ban.sh exists"

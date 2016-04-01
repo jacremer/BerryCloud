@@ -10,6 +10,7 @@ ADDRESS=$($IP route get 1 | awk '{print $NF;exit}')
 NETMASK=$($IFCONFIG $IFACE | grep Mask | sed s/^.*Mask://)
 GATEWAY=$($IP route | awk '/default/ { print $3 }')
 PUBLIC=$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
+MAC=$(ifconfig | grep HWaddr | awk '{ print $5 }')
 echo -e "\e[32m"
 echo    "+--------------------------------------------------------------------+"
 echo    "| ####################### Tech and Me - 2016 ####################### |"
@@ -27,7 +28,7 @@ echo    "|                                                                    |"
 echo    "|  Your LAN IP:        $ADDRESS                                 |"
 echo    "|  Your LAN NetMask:   $NETMASK                                 |"
 echo    "|  Your LAN Gateway:   $GATEWAY                                   |"
-echo    "|  Your Public IP:     $PUBLIC                                 |"
+echo    "|  Your MAC Address :  $MAC                             |"
 echo    "|  Interface:          $IFACE                                          |"
 echo    "|                                                                    |"
 echo    "| #################### https://www.techandme.se #################### |"
@@ -38,4 +39,3 @@ echo -e "\e[0m"
 echo
 
 exit 0
-
