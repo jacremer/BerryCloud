@@ -9,7 +9,7 @@ DATA=/owncloud/data
 # install fail2ban
 wget http://archive.ubuntu.com/ubuntu/pool/universe/f/fail2ban/fail2ban_0.9.3.orig.tar.gz -P /tmp/
 tar xzf fail2ban_0.9.3.orig.tar.gz
-cd /tmp/fail2ban-0.9.3 && python setup.py install
+cd /tmp/fail2ban-0.9.3.orig && python setup.py install
 cd
 
 # Setup fail2ban
