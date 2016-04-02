@@ -1,9 +1,10 @@
-# ownCloud on your RaspberryPI2 with BerryCloud
-Note: no RaspberryPI3 support just yet!
+# ownCloud on your RaspberryPI2 with BerryCloud v1.0.1 stable
+Note: RaspberryPI3 is now supported! (please read the how to wiki page)
 
 Originated from the ownCloud & Western Digital collaboration to make an out of the box safe cloud storage available to the public. This build has not been selected to be distributed, nevertheless we decided to finish the build.
 
 * Please visit this [Github Wiki](https://github.com/ezraholm50/BerryCloud/wiki) for instructions.
+
 
 **The build includes:**
 
@@ -22,6 +23,9 @@ Originated from the ownCloud & Western Digital collaboration to make an out of t
 * Letsencrypt free ssl certificates.
 
 * Default safely overclocked with settings that do not void your RaspberryPI warranty!!!
+
+We are trying to expand our hardware compatibility, if your a hardware dev who could supply the hardware to test please contact ezra@techandme.se
+If you have your own board and would like BerryCloud on it, please also contact the above email and have an SSH route set!
 
 If you encounter any issues please use the [issue tracker](https://github.com/ezraholm50/BerryCloud/issues).
 

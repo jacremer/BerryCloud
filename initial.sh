@@ -6,6 +6,7 @@ SCRIPTS="/var/scripts"
 WWW="/var/www"
 LETS_ENC="https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/lets-encrypt"
 REPO="https://raw.githubusercontent.com/ezraholm50/BerryCloud/master"
+ENOCH="https://github.com/enoch85/ownCloud-VM/tree/master/static"
 
 # Get new server keys
 rm -v /etc/ssh/ssh_host_*
@@ -235,7 +236,7 @@ if 		[ -f $SCRIPTS/ip.sh ];
         then
         	echo "ip.sh  exists"
         else
-        	wget -q --no-check-certificate https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/beta/ip.sh -P $SCRIPTS
+        	wget -q --no-check-certificate $ENOCH/ip.sh -P $SCRIPTS
 fi
 if [[ $? > 0 ]]
 then
@@ -252,7 +253,7 @@ if 		[ -f $SCRIPTS/test_connection.sh ];
         then
         	echo "test_connection.sh  exists"
         else
-        	wget -q --no-check-certificate https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/beta/test_connection.sh -P $SCRIPTS
+        	wget -q --no-check-certificate $ENOCH/test_connection.sh -P $SCRIPTS
 fi
 if [[ $? > 0 ]]
 then
@@ -303,7 +304,7 @@ if 		[ -f $SCRIPTS/update-config.php ];
         then
         	echo "update-config.php  exists"
         else
-        	wget -q --no-check-certificate https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/beta/update-config.php -P $SCRIPTS
+        	wget -q --no-check-certificate $ENOCH/update-config.php -P $SCRIPTS
 fi
 if [[ $? > 0 ]]
 then
@@ -320,7 +321,7 @@ if 		[ -f $SCRIPTS/history.sh ];
         then
                 echo "history.sh exists"
         else
-        	wget -q --no-check-certificate https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/beta/history.sh -P $SCRIPTS
+        	wget -q --no-check-certificate $ENOCH/history.sh -P $SCRIPTS
 fi
 if [[ $? > 0 ]]
 then
