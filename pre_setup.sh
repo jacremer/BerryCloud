@@ -33,7 +33,7 @@ chown :ocadmin /etc/update-motd.d/*
 
 # Get Script to show WAN IP and set alias cmd to WAN
 wget -q https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/wan.sh -P /home/ocadmin/
-echo 'alias WAN="sudo bash /home/ocadmin/wan.sh"' > /home/ocadmin/.bashrc
+echo 'alias WAN="bash /home/ocadmin/wan.sh"' > /home/ocadmin/.bashrc
 echo 'alias WAN="bash /home/ocadmin/wan.sh"' > /root/.bashrc
 chmod +x /home/ocadmin/wan.sh
 
