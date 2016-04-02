@@ -6,7 +6,7 @@ SCRIPTS="/var/scripts"
 WWW="/var/www"
 LETS_ENC="https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/lets-encrypt"
 REPO="https://raw.githubusercontent.com/ezraholm50/BerryCloud/master"
-ENOCH="https://github.com/enoch85/ownCloud-VM/tree/master/static"
+ENOCH="https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/static/"
 
 # Get new server keys
 rm -v /etc/ssh/ssh_host_*
