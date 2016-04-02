@@ -674,11 +674,12 @@ shopt -s extglob
 cd /var/scripts
 rm !(setup_secure_permissions_owncloud.sh|history.sh|update_checker.sh)
 wget -q https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/wan.sh -P /home/ocadmin/
-wget -q https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/activate-ssl.sh -P /var/scripts/
+wget -q https://github.com/enoch85/ownCloud-VM/raw/master/lets-encrypt/activate-ssl.sh -P /var/scripts/
 wget -q https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/owncloud_update.sh -P /var/scripts/
 wget -q https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/techandme.sh -P /var/scripts/
 wget -q https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/dyndns.sh -P /var/scripts/
 chmod -R +x $SCRIPTS && cd
+chmod +x /home/ocadmin/wan.sh
 rm $DATA/owncloud.log
 cat /dev/null > ~/.bash_history
 cat /dev/null > /var/spool/mail/root

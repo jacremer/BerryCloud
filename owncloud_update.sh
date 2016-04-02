@@ -5,7 +5,7 @@
 # Tested on Ubuntu Server 14.04.
 #
 SCRIPTS=/var/scripts
-HTML=/var/www/html
+HTML=/var/www
 OCPATH=$HTML/owncloud
 DATA=$OCPATH/data
 SECURE="$SCRIPTS/setup_secure_permissions_owncloud.sh"
@@ -47,7 +47,7 @@ else
     echo "Backup OK!"
     echo -e "\e[0m"
 fi
-wget https://download.owncloud.org/community/testing/owncloud-$OCVERSION.tar.bz2 -P $HTML
+wget https://download.owncloud.org/community/owncloud-$OCVERSION.tar.bz2 -P $HTML
 
 if [ -f $HTML/owncloud-$OCVERSION.tar.bz2 ];
 then
