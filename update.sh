@@ -1,3 +1,4 @@
+##################################################################################################################################################
 # Version 1.2
 # Check if root
         if [ "$(whoami)" != "root" ]; then
@@ -32,12 +33,12 @@ fi
 
 mesg n
 UPDATE
-
 chmod 750 /etc/cron.daily/rpi-update.sh
 
 # Get the latest update checker daily
 echo "rm /var/scripts/update_checker.sh" >> /etc/cron.daily/fresh_update_checker.sh
 echo "wget https://github.com/ezraholm50/BerryCloud/raw/master/update_checker.sh -P /var/scripts/" > /etc/cron.daily/fresh_update_checker.sh
+chmod 750 /etc/cron.daily/fresh_update_checker.sh
 
 # Install rpi-update
 echo "deb http://archive.raspberrypi.org/debian/ jessie main" > /etc/apt/sources.list
@@ -60,5 +61,8 @@ chmod 750 /var/scripts/techandme.sh
 rm /var/scripts/update.sh
 apt-get autoclean -y && apt-get autoremove -y && apt-get update && apt-get upgrade -y
 reboot
+
+##################################################################################################################################################
+##Version 1.3
 
 exit 0
