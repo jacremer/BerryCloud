@@ -44,6 +44,23 @@ else
         sleep 1
 fi
 
+# Get update checker
+if              [ -f $SCRIPTS/update_checker.sh ];
+        then
+                echo "update_checker.sh exists"
+        else
+                wget -q --no-check-certificate $REPO/update_checker.sh -P $SCRIPTS
+fi
+if [[ $? > 0 ]]
+then
+        echo "Download of scripts failed. System will reboot in 10 seconds..."
+        sleep 10
+        reboot
+else
+        echo "Downloaded update_checker.sh."
+        sleep 1
+fi
+
 # Get Fail2ban script
 if 		[ -f $SCRIPTS/fail2ban.sh ];
         then
