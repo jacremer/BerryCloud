@@ -20,10 +20,17 @@ apt-get autoremove -y && apt-get autoclean -y
 #echo "deb http://archive.raspberrypi.org/debian/ jessie main" > /etc/apt/sources.list
 #wget "http://archive.raspberrypi.org/debian/raspberrypi.gpg.key"
 #sudo apt-key add raspberrypi.gpg.key
-#apt-get install libraspberrypi-bin librasberrypi-dev
-apt-get install miredo libminiupnpc10 ntpdate -y
+#apt-get update
+#apt-get install libraspberrypi-bin -y
+apt-get install systemd rsyslog module-init-tools miredo libminiupnpc10 ntpdate -y
 apt-get update && apt-get upgrade -y && apt-get -f install -y
 dpkg --configure --pending
+
+# Install rpi-update
+sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+echo "sudo rpi-update" >> /etc/cron.weekly/rpi-update.sh
+chmod 755 /etc/cron.weekly/rpi-update.sh
+rpi-update
 
 # Ask if user has an RPI2 or #
 #bash $SCRIPTS/rpi_version.sh
@@ -33,9 +40,10 @@ chown :ocadmin /etc/update-motd.d/*
 
 # Get Script to show WAN IP and set alias cmd to WAN
 wget -q https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/wan.sh -P /home/ocadmin/
-echo 'alias WAN="bash /home/ocadmin/wan.sh"' > /home/ocadmin/.bashrc
+echo 'alias WAN="sudo bash /home/ocadmin/wan.sh"' > /home/ocadmin/.bashrc
 echo 'alias WAN="bash /home/ocadmin/wan.sh"' > /root/.bashrc
-chmod +x /home/ocadmin/wan.sh
+chmod 750 /home/ocadmin/wan.sh
+chown ocadmin:root /home/ocadmin/wan.sh
 
 # Set hostname and ServerName
 hostnamectl set-hostname owncloud 
