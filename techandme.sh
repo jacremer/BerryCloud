@@ -22,4 +22,5 @@ bash $DIR/90-updates-available
 bash $DIR/91-release-upgrade
 bash $DIR/98-fsck-at-reboot
 bash $DIR/98-reboot-required
+bash /var/scripts/update_checker.sh
 exit 0

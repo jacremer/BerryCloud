@@ -1,4 +1,13 @@
 # Version 1.2
+# Check if root
+        if [ "$(whoami)" != "root" ]; then
+        echo
+        echo -e "\e[31mSorry, you are not root.\n\e[0mYou must type: \e[36msudo \e[0mbash /var/scripts/update.sh"
+        echo
+        exit 1
+fi
+
+# Upgrade and install
 apt-get update && apt-get upgrade -y && apt-get -f install -y
 apt-get install rsyslog systemd module-init-tools -y
 dpkg --configure --pending

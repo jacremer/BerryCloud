@@ -3,13 +3,21 @@
 # Tech and Me, 2016 - www.techandme.se
 # note for devs: change version numbers in techandme.se, update.sh and update_checker.sh for this script to work.
 # If techandme.sh contains version number below, then a old version is detected and install a newer version
-grep -rHln "1.0" /var/scripts/
+# Check if root
+        if [ "$(whoami)" != "root" ]; then
+        echo
+        echo -e "\e[31mSorry, you are not root.\n\e[0mYou must type: \e[36msudo \e[0mbash $SCRIPTS/setup.sh"
+        echo
+        exit 1
+fi
+
+# Check versions
+grep -rHln "1.0" /var/scripts/techandme.sh
 if [[ $? > 0 ]]
         then
                 echo
                 echo "It seems you already have the latest version, exiting now..."
-                sleep 3
-                exit 0
+               exit 3
         else
 function ask_yes_or_no() {
     read -p "$1 ([y]es or [N]o): "
