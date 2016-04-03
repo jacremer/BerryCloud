@@ -8,7 +8,7 @@ figlet -f small Tech and Me
 echo "           https://www.techandme.se"
 echo -e "\e[32m"###################################################################"\e[0m"
 bash $DIR/00-header
-echo "  BerryCloud ownCloud server VERSION 1.2 stable"
+echo "  BerryCloud ownCloud server VERSION 1.2"
 echo -e "\e[32m"###################################################################"\e[0m"
 echo "WAN IP:   type: WAN"
 echo "LAN IP:   $ADDRESS"

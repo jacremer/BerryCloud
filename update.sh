@@ -12,6 +12,29 @@ apt-get update && apt-get upgrade -y && apt-get -f install -y
 apt-get install rsyslog systemd module-init-tools -y
 dpkg --configure --pending
 
+# Add update checker to weekly cron
+cat <<-UPDATE > "/etc/cron.weekly/update_checker_cron.sh"
+#!/bin/bash
+#
+# Tech and Me, 2016 - www.techandme.se
+# note for devs: change version numbers in techandme.se, update.sh and update_checker.sh for this script to work.
+# If techandme.sh contains version number below, then a old version is detected and install a newer version
+# Check versions
+grep -rhln "1.2" /var/scripts/techandme.sh
+if [[ $? > 0 ]]
+        then
+                exit 0
+         else
+sudo wget https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/update.sh -P /var/scripts/
+sudo chmod 750 /var/scripts/update.sh
+sudo bash /var/scripts/update.sh
+fi
+
+mesg n
+UPDATE
+
+chmod 755 /etc/cron.weekly/rpi-update.sh
+
 # Install rpi-update
 echo "deb http://archive.raspberrypi.org/debian/ jessie main" > /etc/apt/sources.list
 wget "http://archive.raspberrypi.org/debian/raspberrypi.gpg.key"

@@ -4,7 +4,7 @@
 # note for devs: change version numbers in techandme.se, update.sh and update_checker.sh for this script to work.
 # If techandme.sh contains version number below, then a old version is detected and install a newer version
 # Check versions
-grep -rHln "1.0" /var/scripts/techandme.sh
+grep -hor "BerryCloud ownCloud server VERSION 1.0" /var/scripts/techandme.sh
 if [[ $? > 0 ]]
         then
                 echo "It seems you have the latest BerryCloud version..."
