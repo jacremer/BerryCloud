@@ -387,7 +387,7 @@ fi
 sleep 15
 
 # Make $SCRIPTS excutable
-        	chmod +x -R $SCRIPTS
+        	chmod 750 -R $SCRIPTS
         	chown root:root -R $SCRIPTS
 
 # Allow ocadmin to run theese scripts
@@ -395,6 +395,8 @@ sleep 15
         	chown ocadmin:ocadmin $SCRIPTS/history.sh
         	chown ocadmin:ocadmin $SCRIPTS/pre_setup.sh
         	chown ocadmin:ocadmin $SCRIPTS/pre_setup_message.sh
+		chown ocadmin:ocadmin $SCRIPTS/update_checker.sh
+		chown ocadmin:ocadmin $SCRIPTS/techandme.sh
 
 # Change root profile
 sleep 10
