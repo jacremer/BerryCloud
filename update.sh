@@ -1,6 +1,7 @@
 ##BerryCloud version 1.0.1 stable
 
 ## Version 1.0.2
+mv /var/scripts/update.sh /var/scripts/update_1.0.1.sh
 apt-get update && apt-get upgrade -y && apt-get -f install -y
 apt-get install rsyslog systemd module-init-tools
 dpkg --configure --pending
