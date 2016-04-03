@@ -2,7 +2,7 @@
 
 ## Version 1.0.2
 apt-get update && apt-get upgrade -y && apt-get -f install -y
-apt-get install rsyslog module-init-tools
+apt-get install rsyslog systemd module-init-tools
 dpkg --configure --pending
 
 # Install rpi-update
