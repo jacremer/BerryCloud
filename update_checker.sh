@@ -7,10 +7,8 @@
 grep -rHln "1.0" /var/scripts/techandme.sh
 if [[ $? > 0 ]]
         then
-                echo
-                echo "It seems you already have the latest version, exiting now..."
-               exit 3
-        else
+                echo "It seems you have the latest BerryCloud version..."
+         else
 function ask_yes_or_no() {
     read -p "$1 ([y]es or [N]o): "
     case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
