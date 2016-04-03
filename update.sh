@@ -26,14 +26,14 @@ if [[ $? > 0 ]]
         then
                 exit 0
          else
-sudo wget https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/update.sh -P /var/scripts/
-sudo chmod 750 /var/scripts/update.sh
-sudo bash /var/scripts/update.sh
+wget https://raw.githubusercontent.com/ezraholm50/BerryCloud/master/update.sh -P /var/scripts/
+chmod 750 /var/scripts/update.sh
+bash /var/scripts/update.sh
 fi
 
 mesg n
 UPDATE
-chmod 750 /etc/cron.daily/rpi-update.sh
+chmod 750 /etc/cron.daily/update_checker_cron.sh
 
 # Get the latest update checker daily
 echo "rm /var/scripts/update_checker.sh" >> /etc/cron.daily/fresh_update_checker.sh
@@ -47,9 +47,9 @@ apt-key add raspberrypi.gpg.key
 apt-get update
 apt-get install libraspberrypi-bin -y
 curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
-echo "sudo rpi-update" >> /etc/cron.weekly/rpi-update.sh
-chmod 755 /etc/cron.weekly/rpi-update.sh
+echo "rpi-update" >> /etc/cron.weekly/rpi-update.sh
 rpi-update
+chmod 750 /etc/cron.daily/rpi-update.sh
 
 # Get the latest login screen
 rm /var/scripts/techandme.sh
