@@ -22,8 +22,16 @@ curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rp
 echo "sudo rpi-update" >> /etc/cron.weekly/rpi-update.sh
 chmod 755 /etc/cron.weekly/rpi-update.sh
 rpi-update
-sed -i 's|1.0|1.2|g' /var/scripts/techandme.sh
+
+# Get the latest login screen
+rm /var/scripts/techandme.sh
+wget https://github.com/ezraholm50/BerryCloud/raw/master/techandme.sh -P /var/scripts/
+chown ocadmin:ocadmin /var/scripts/techandme.sh
+chmod 750 /var/scripts/techandme.sh
+
+# Cleanup
 rm /var/scripts/update.sh
+apt-get autoclean -y && apt-get autoremove -y && apt-get update && apt-get upgrade -y
 reboot
 
 exit 0
