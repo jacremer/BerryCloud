@@ -240,62 +240,6 @@ bash $SCRIPTS/setup_secure_permissions_owncloud.sh
 
 # Install ownCloud
 sudo -u www-data php $OCPATH/occ maintenance:install --database "mysql" --database-name "owncloud_db" --database-user "root" --database-pass "$MYSQL_PASS" --admin-user "ocadmin" --admin-pass "owncloud"
-
-# Change data dir
-#mkdir -p /owncloud
-#mkdir -p $DATA
-#sudo -u www-data php $OCPATH/occ config:system:set datadirectory --value="$DATA"
-#mv $OCPATH/data/* $DATA/
-#mv $OCPATH/data/.htaccess $DATA/.htaccess
-#mv $OCPATH/data/.ocdata $DATA/.ocdata
-#rm -rf $OCPATH/data
-#rm $SCRIPTS/setup_secure_permissions_owncloud.sh
-#
-#cat <<-PERMISSION > "$SCRIPTS/setup_secure_permissions_owncloud.sh"
-##!/bin/bash
-##
-## Tech and Me, 2016 - www.techandme.se
-##
-#ocpath='/var/www/owncloud'
-#htuser='www-data'
-#htgroup='www-data'
-#rootuser='root'
-#data='/owncloud'
-#
-#
-#printf "Creating possible missing Directories\n"
-#mkdir -p $ocpath/assets
-#
-#printf "chmod Files and Directories\n"
-#find ${ocpath}/ -type f -print0 | xargs -0 chmod 0640
-#find ${ocpath}/ -type d -print0 | xargs -0 chmod 0750
-#find ${data}/ -type f -print0 | xargs -0 chmod 0640
-#find ${data}/ -type d -print0 | xargs -0 chmod 0750
-#
-#printf "chown Directories\n"
-#chown -R ${rootuser}:${htgroup} ${ocpath}/
-#chown -R ${htuser}:${htgroup} ${ocpath}/apps/
-#chown -R ${htuser}:${htgroup} ${ocpath}/config/
-#chown -R ${rootuser}:${htgroup} ${data}/
-#chown -R ${htuser}:${htgroup} ${data}/data/
-#chown -R ${htuser}:${htgroup} ${ocpath}/themes/
-#chown -R ${htuser}:${htgroup} ${ocpath}/assets/
-#
-#chmod +x ${ocpath}/occ
-#
-#printf "chmod/chown .htaccess\n"
-#if [ -f ${ocpath}/.htaccess ]
-# then
-#  chmod 0644 ${ocpath}/.htaccess
-#  chown ${rootuser}:${htgroup} ${ocpath}/.htaccess
-#fi
-#if [ -f ${data}/data/.htaccess ]
-# then
-#  chmod 0644 ${data}/data/.htaccess
-#  chown ${rootuser}:${htgroup} ${data}/data/.htaccess
-#fi
-#PERMISSION
-
 bash $SCRIPTS/setup_secure_permissions_owncloud.sh
 
 # Setup fail2ban
@@ -456,32 +400,31 @@ fi
 sudo -u www-data php $OCPATH/occ config:system:set enable_previews --value="true"
 
 # Download and install Contacts
-#if [ -d $OCPATH/apps/contacts ]; then
-#sleep 1
-#else
-#wget https://github.com/owncloud/contacts/archive/master.zip -P $OCPATH/apps
-#unzip -q $OCPATH/apps/master.zip -d $OCPATH/apps
-#cd $OCPATH/apps
-#rm master.zip
-#mv contacts-master/ contacts/
-#fi
+if [ -d $OCPATH/apps/contacts ]; then
+sleep 1
+else
+wget https://github.com/owncloud/contacts/archive/master.zip -P $OCPATH/apps
+unzip -q $OCPATH/apps/master.zip -d $OCPATH/apps
+cd $OCPATH/apps
+rm master.zip
+mv contacts-master/ contacts/
+fi
 
 # Enable Contacts
 if [ -d $OCPATH/apps/contacts ]; then
 sudo -u www-data php $OCPATH/occ app:enable contacts
 fi
 
-
 # Download and install Logreader
-#if [ -d $OCPATH/apps/logreader ]; then
-#sleep 1
-#else
-#wget https://github.com/icewind1991/logreader/archive/master.zip -P $OCPATH/apps
-#unzip -q $OCPATH/apps/master.zip -d $OCPATH/apps
-#cd $OCPATH/apps
-#rm master.zip
-#mv logreader-master/ logreader/
-#fi
+if [ -d $OCPATH/apps/logreader ]; then
+sleep 1
+else
+wget https://github.com/icewind1991/logreader/archive/master.zip -P $OCPATH/apps
+unzip -q $OCPATH/apps/master.zip -d $OCPATH/apps
+cd $OCPATH/apps
+rm master.zip
+mv logreader-master/ logreader/
+fi
 
 # Enable Logreader
 if [ -d $OCPATH/apps/logreader ]; then
@@ -507,20 +450,6 @@ cd
 
 # Set secure permissions final (./data/.htaccess has wrong permissions otherwise)
 bash $SCRIPTS/setup_secure_permissions_owncloud.sh
-
-# Install packages for Webmin
-#apt-get install --force-yes -y zip perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
-
-# Install Webmin
-#cd
-#wget http://prdownloads.sourceforge.net/webadmin/webmin_1.791_all.deb
-#dpkg --install webmin_1.791_all.deb
-#sed -i 's|gray-theme|authentic-theme|g' /etc/webmin/config
-#sed -i 's|gray-theme|authentic-theme|g' /etc/webmin/miniserv.conf
-#service webmin restart
-#echo
-#echo "Webmin is installed, access it from your browser: https://$ADDRESS:10000"
-#sleep 2
 clear
 
 # Show ROOT pass, and write it to a file in case the user fails to write it down
@@ -564,11 +493,6 @@ else
     sleep 2
 fi
 
-# Add clamav-freshclam cmd to cron to update antivirus def.
-#echo "#!/bin/sh" >> /etc/cron.daily/freshclam.sh
-#echo "/usr/bin/freshclam --quiet" >> /etc/cron.daily/freshclam.sh
-#chmod 755 /etc/cron.daily/freshclam.sh
-
 # Redirect http to https
 echo "RewriteEngine On" >> $OCPATH/.htaccess
 echo "RewriteCond %{HTTPS} off" >> $OCPATH/.htaccess
@@ -604,18 +528,6 @@ cd
 #echo 'extension=redis.so' >> /etc/php/7.0/apache2/php.ini
 bash /var/scripts/install-redis-php-7.sh
 sleep 3
-
-# Redis performance tweaks
-#echo 'vm.overcommit_memory = 1' >> /etc/sysctl.conf
-#sed -i 's|# unixsocket /tmp/redis.sock|unixsocket /var/run/redis.sock|g' /etc/redis/6379.conf
-#sed -i 's|# unixsocketperm 700|unixsocketperm 777|g' /etc/redis/6379.conf
-#sed -i 's|port 6379|port 0|g' /etc/redis/6379.conf
-#sed -i "s|'host' => 'localhost',|'host' => '/var/run/redis.sock',|g" $CONFIG
-#sed -i 's|6379|0|g' $CONFIG
-#service redis_6379 restart
-#sed -i 's|REDISPORT="6379"/REDISPORT="6379"\\\nSOCKET=/var/run/redis.sock|g' /etc/init.d/redis_6379
-#sed -i 's|#Configurations injected by install_server below....|SOCKET=/var/run/redis.sock|g' /etc/init.d/redis_6379
-#sed -i 's|$CLIEXEC -p $REDISPORT shutdown|$CLIEXEC -s $SOCKET shutdown|g' /etc/init.d/redis_6379
 
 # Increase max filesize (expects that changes are made in /etc/php5/apache2/php.ini)
 # Here is a guide: https://www.techandme.se/increase-max-file-size/
