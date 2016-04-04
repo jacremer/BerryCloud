@@ -14,6 +14,13 @@ apt-get install rsyslog systemd module-init-tools -y
 dpkg --configure --pending
 
 # Add update checker to daily cron
+
+if 		[ -f /etc/cron.daily/update_checker_cron.sh ];
+	then
+      		rm /etc/cron.daily/update_checker_cron.sh      	else
+      		sleep 1
+fi
+
 cat <<-UPDATE > "/etc/cron.daily/update_checker_cron.sh"
 #!/bin/bash
 #
