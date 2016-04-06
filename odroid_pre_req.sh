@@ -3,7 +3,7 @@
 # Tech and Me, 2016 - www.techandme.se
 #
 apt-get update && apt-get upgrade -y && apt-get install -f
-apt-get install nano sudo lvm2 parted ntp ntpdate miredo miniupnpc aptitude dialog figlet zip unzip landscape-common ufw linux-firmware openssh-server curl samba tar wget rsync software-properties-common update-manager update-notifier rsyslog
+apt-get install nano sudo lvm2 parted ntp ntpdate miredo miniupnpc aptitude dialog figlet zip unzip landscape-common ufw linux-firmware openssh-server curl samba tar wget rsync software-properties-common update-manager-core update-notifier rsyslog
 
 # Install packages for Webmin
 apt-get install --force-yes -y zip perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
