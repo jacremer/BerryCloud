@@ -17,7 +17,8 @@ dpkg --configure --pending
 
 if 		[ -f /etc/cron.daily/update_checker_cron.sh ];
 	then
-      		rm /etc/cron.daily/update_checker_cron.sh      	else
+      		rm /etc/cron.daily/update_checker_cron.sh
+      	else
       		sleep 1
 fi
 
