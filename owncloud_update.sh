@@ -9,7 +9,7 @@ HTML=/var/www
 OCPATH=$HTML/owncloud
 DATA=$OCPATH/data
 SECURE="$SCRIPTS/setup_secure_permissions_owncloud.sh"
-OCVERSION=9.0.0
+OCVERSION=9.0.1
 THEME_NAME=""
 REPO="https://raw.githubusercontent.com/ezraholm50/BerryCloud/master"
 
@@ -53,7 +53,7 @@ if [ -f $HTML/owncloud-$OCVERSION.tar.bz2 ];
 then
         echo "$HTML/owncloud-latest.tar.bz2 exists"
 else
-        echo "Aborting,something went wrong with the download"
+        echo "Aborting, something went wrong with the download"
    exit 1
 fi
 
@@ -140,9 +140,6 @@ sudo -u www-data php $OCPATH/occ maintenance:repair
 # Cleanup un-used packages
 sudo apt-get autoremove -y
 sudo apt-get autoclean
-
-# Update GRUB, just in case
-sudo update-grub
 
 # Write to log
 touch /var/log/cronjobs_success.log
