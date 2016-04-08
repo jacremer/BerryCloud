@@ -133,6 +133,7 @@ chmod 750 /var/scripts/techandme.sh
 # Cleanup
 rm /var/scripts/update.sh
 apt-get autoclean -y && apt-get autoremove -y && apt-get update && apt-get upgrade -y
+update-grub
 reboot
 
 ##################################################################################################################################################
