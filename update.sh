@@ -131,9 +131,6 @@ chown ocadmin:ocadmin /var/scripts/techandme.sh
 chmod 750 /var/scripts/techandme.sh
 
 # Cleanup
-echo "" > /etc/apt/sources.list
-echo "" > /etc/apt/sources.list
-
 rm /var/scripts/update.sh
 apt-get autoclean -y && apt-get autoremove -y && apt-get update && apt-get upgrade -y
 reboot
