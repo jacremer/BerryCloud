@@ -67,10 +67,10 @@ deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-updates main restricted
 ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 ## team. Also, please note that software in universe WILL NOT receive any
 ## review or updates from the Ubuntu security team.
-# deb http://ports.ubuntu.com/ubuntu-ports/ vivid universe
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid universe
-# deb http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
+deb http://ports.ubuntu.com/ubuntu-ports/ vivid universe
+deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid universe
+deb http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
+deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
 ## N.B. software from this repository may not have been tested as
 ## extensively as that contained in the main release, although it includes
 ## newer versions of some applications which may provide useful features.
@@ -104,10 +104,10 @@ deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-updates main restricted
 ## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
 ## team. Also, please note that software in universe WILL NOT receive any
 ## review or updates from the Ubuntu security team.
-# deb http://ports.ubuntu.com/ubuntu-ports/ vivid universe
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid universe
-# deb http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
+deb http://ports.ubuntu.com/ubuntu-ports/ vivid universe
+deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid universe
+deb http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
+deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
 ## N.B. software from this repository may not have been tested as
 ## extensively as that contained in the main release, although it includes
 ## newer versions of some applications which may provide useful features.
