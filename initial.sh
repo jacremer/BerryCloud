@@ -387,7 +387,7 @@ fi
 sleep 15
 
 # Make $SCRIPTS excutable
-        	chmod 750 -R $SCRIPTS
+        	chmod +x -R $SCRIPTS
         	chown root:root -R $SCRIPTS
 
 # Allow ocadmin to run theese scripts
