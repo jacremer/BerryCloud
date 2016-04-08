@@ -11,6 +11,7 @@ DATA=$OCPATH/data
 SECURE="$SCRIPTS/setup_secure_permissions_owncloud.sh"
 OCVERSION=9.0.1
 THEME_NAME=""
+UNPACK="owncloud-$OCVERSION.tar.bz2"
 REPO="https://raw.githubusercontent.com/ezraholm50/BerryCloud/master"
 
 # Must be root
@@ -81,7 +82,7 @@ fi
 if [ -d $DATA/ ]; then
         echo "data/ exists" && sleep 2
         rm -rf $OCPATH
-        tar -xjf $HTML/owncloud-latest.tar.bz2 -C $HTML 
+        tar -xjf $HTML/$UNPACK -C $HTML 
         rm $HTML/owncloud-latest.tar.bz2
         cp -R $HTML/themes $OCPATH/ && rm -rf $HTML/themes
         cp -Rv $HTML/data $DATA && rm -rf $HTML/data
