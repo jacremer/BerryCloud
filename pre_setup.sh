@@ -80,10 +80,10 @@ deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
 # deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-backports main restricted
 deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security main restricted
 deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security main restricted
-# deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security universe
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security universe
-# deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security multiverse
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security multiverse
+deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security universe
+deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security universe
+deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security multiverse
+deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security multiverse
 SOURCES
 UPDATE
 rpi-update
@@ -117,10 +117,10 @@ deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-updates universe
 # deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-backports main restricted
 deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security main restricted
 deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security main restricted
-# deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security universe
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security universe
-# deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security multiverse
-# deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security multiverse
+deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security universe
+deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security universe
+deb http://ports.ubuntu.com/ubuntu-ports/ vivid-security multiverse
+deb-src http://ports.ubuntu.com/ubuntu-ports/ vivid-security multiverse
 SOURCES
 
 # Get the latest login screen
