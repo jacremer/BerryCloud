@@ -10,7 +10,7 @@ fi
 
 # Upgrade and install
 apt-get update && apt-get upgrade -y && apt-get -f install -y
-apt-get install rsyslog systemd module-init-tools -y
+apt-get install rsyslog systemd module-init-tools libminiupnpc10 miredo ntpdate -y
 dpkg --configure --pending
 
 # Add update checker to daily cron
