@@ -196,36 +196,13 @@ fi
 # Test page
 wget -q https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/beta/index.php -P $HTML
 
-# Install PHP 7
-#echo -ne '\n' | sudo LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php -y
-#apt-get update
-#apt-get install -y \
-#	libapache2-mod-php7.0 \
-#        php7.0-common \
-#        php7.0-mysql \
-#        php7.0-intl \
-#        php7.0-mcrypt \
-#        php7.0-ldap \
-#        php7.0-imap \
-#        php7.0-cli \
-#        php7.0-gd \
-#        php7.0-pgsql \
-#        php7.0-json \
-#        php7.0-sqlite3 \
-#        php7.0-curl  \
-#        php7.0-zip  \
-#        php7.0-xml \
-#        smbclient \
-#        libsm6 \
-#        libsmbclient
-
 # Download $OCVERSION
 wget https://download.owncloud.org/community/$OCVERSION -P $HTML
 apt-get install unzip -y
 unzip -q $HTML/$OCVERSION -d $HTML
 rm $HTML/$OCVERSION
 
-# Create data folder, occ complains otherwise
+# Create data folder, occ complains otherwise ## make it -p ##
 mkdir $OCPATH/data
 
 # Secure permissions
@@ -251,13 +228,15 @@ sleep 3
 bash $SCRIPTS/trusted.sh
 
 # Prepare cron.php to be run every 15 minutes
-# The user still has to activate it in the settings GUI
 crontab -u www-data -l | { cat; echo "*/15  *  *  *  * php -f $OCPATH/cron.php > /dev/null 2>&1"; } | crontab -u www-data -
+
 # Backup cron small workaround, needs fixing
 echo "php -f /var/www/owncloud/cron.php > /dev/null 2>&1" >> /etc/cron.daily/owncloud_cron.sh
 chmod 755 /etc/cron.daily/owncloud_cron.sh
+
 # Update virus defenitions daily at 03:30
 crontab -u root -l | { cat; echo "*30  3  *  *  *  /usr/local/bin/freshclam –quiet"; } | crontab -u root -
+
 # Run secure permissions script daily
 cp -ar $SCRIPTS/setup_secure_permissions_owncloud.sh /etc/cron.daily/setup_secure_permissions_owncloud.sh
 chmod 755 /etc/cron.daily/setup_secure_permissions_owncloud.sh
@@ -271,7 +250,7 @@ sed -i "s|max_input_time = 60|max_input_time = 7000|g" /etc/php/7.0/apache2/php.
 # memory_limit
 sed -i "s|memory_limit = 128M|memory_limit = 512M|g" /etc/php/7.0/apache2/php.ini
 # post_max
-sed -i "s|post_max_size = 8M|post_max_size = 2200M|g" /etc/php/7.0/apache2/php.ini
+sed -i "s|post_max_size = 8M|post_max_size = 2020M|g" /etc/php/7.0/apache2/php.ini
 # upload_max
 sed -i "s|upload_max_filesize = 2M|upload_max_filesize = 2000M|g" /etc/php/7.0/apache2/php.ini
 
@@ -405,7 +384,6 @@ if [ -d $OCPATH/apps/contacts ]; then
 sudo -u www-data php $OCPATH/occ app:enable contacts
 fi
 
-
 # Download and install Logreader
 if [ -d $OCPATH/apps/logreader ]; then
 sleep 1
@@ -488,7 +466,6 @@ fi
 echo "RewriteEngine On" >> $OCPATH/.htaccess
 echo "RewriteCond %{HTTPS} off" >> $OCPATH/.htaccess
 echo "RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]" >> $OCPATH/.htaccess
-
 clear
 
 # Let's Encrypt
@@ -516,9 +493,9 @@ bash $SCRIPTS/dyndns.sh
 
 # Install Redis
 bash /var/scripts/install-redis-php-7.sh
-sleep 3
+clear
 
-# Increase max filesize (expects that changes are made in /etc/php5/apache2/php.ini)
+# Make sure .htaccess lets us increase max filesize (expects that changes are made in /etc/php5/apache2/php.ini)
 # Here is a guide: https://www.techandme.se/increase-max-file-size/
 VALUE="# php_value upload_max_filesize 513M"
 if grep -Fxq "$VALUE" $OCPATH/.htaccess
@@ -529,19 +506,15 @@ else
         sed -i 's/  php_value post_max_size 513M/# php_value post_max_size 513M/g' $OCPATH/.htaccess
         sed -i 's/  php_value memory_limit 512M/# php_value memory_limit 512M/g' $OCPATH/.htaccess
 fi
+clear
 
 # Upgrade system
-clear
-echo System will now upgrade...
-sleep 2
-echo
-echo
 apt-get update
 apt-get upgrade -y
 apt-get -f install -y
 dpkg --configure --pending
 
-# Cleanup 1
+# Cleanup
 apt-get autoremove -y
 CLEARBOOT=$(dpkg -l linux-* | awk '/^ii/{ print $2}' | grep -v -e `uname -r | cut -f1,2 -d"-"` | grep -e [0-9] | xargs sudo apt-get -y purge)
 echo "$CLEARBOOT"
@@ -588,7 +561,6 @@ cat /dev/null > /var/spool/mail/ocadmin
 cat /dev/null > /var/log/apache2/access.log
 cat /dev/null > /var/log/apache2/error.log
 cat /dev/null > /var/log/cronjobs_success.log
-#sed -i "s|mod_php5|mod_php7|g" $OCPATH/.htaccess
 sed -i 's|sudo -i||g' /home/ocadmin/.profile
 sed -i 's|#bash /var/scripts/pre_setup_message.sh||g' /home/ocadmin/.profile
 sed -i 's|bash /var/scripts/instructions.sh|bash /var/scripts/techandme.sh|g' /home/ocadmin/.profile
