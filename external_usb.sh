@@ -58,7 +58,7 @@ partprobe
 # Swap
 mkswap -L PI_SWAP /dev/sda1 # format as swap
 swapon /dev/sda1 # announce to system
-sed -i 's|#/swapfile none swap defaults 0 0|/dev/sda1 none swap sw 0 0|g' /etc/fstab # mount as swap on startup
+echo "/dev/sda1 none swap sw 0 0" >> /etc/fstab
 sync
 partprobe
 
