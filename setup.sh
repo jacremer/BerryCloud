@@ -9,7 +9,7 @@ ROOT_PASS=$(cat /dev/urandom | tr -dc "a-zA-Z0-9@#*=" | fold -w $SHUF | head -n 
 PW_FILE=/var/mysql_password.txt
 # ownCloud
 CONFIG=$HTML/owncloud/config/config.php
-OCVERSION=owncloud-9.0.0.zip
+OCVERSION=owncloud-9.0.1.zip
 SCRIPTS=/var/scripts
 HTML=/var/www
 OCPATH=$HTML/owncloud
