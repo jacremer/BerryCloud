@@ -10,7 +10,7 @@ echo -e "\e[32m"################################################################
 bash $DIR/00-header
 echo "  BerryCloud ownCloud server VERSION 1.2"
 echo -e "\e[32m"###################################################################"\e[0m"
-echo "WAN IP:   type: WAN"
+echo "WAN IP:   type: sudo WAN"
 echo "LAN IP:   $ADDRESS"
 echo "MAC ADR:  $MAC"
 echo "Webmin:   https://$ADDRESS:10000"
