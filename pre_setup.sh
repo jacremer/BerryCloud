@@ -222,7 +222,7 @@ function ask_yes_or_no() {
         *)     echo "no" ;;
     esac
 }
-if [[ "yes" == $(ask_yes_or_no "Is the harddisk bigger then 2TB?" ]]
+if [[ "yes" == $(ask_yes_or_no "Is the harddisk bigger then 2TB?") ]]
 then
 wget -q https://github.com/ezraholm50/BerryCloud/raw/master/gpt_usb.sh -P $SCRIPTS/
 bash $SCRIPTS/gpt_usb.sh
