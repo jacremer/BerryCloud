@@ -11,7 +11,9 @@ function ask_yes_or_no() {
 }
 if [[ "yes" == $(ask_yes_or_no "Do you have a Harddisk with more storage then 2TB???") ]]
 then
-sed -i 's|||g' /var/scripts/external_usb.sh
+sed -i 's|fdisk $device << EOF
+o|fdisk $device << EOF
+g|g' /var/scripts/external_usb.sh
 else
 sleep 1
 fi
