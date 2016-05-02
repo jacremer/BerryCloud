@@ -214,8 +214,21 @@ function ask_yes_or_no() {
 }
 if [[ "yes" == $(ask_yes_or_no "Do you have an external Harddisk plugged in? (Recommended, SSD, powered external drive) ALL DATA WILL BE LOST AFTER THE FORMAT") ]]
 then
-
+echo
+function ask_yes_or_no() {
+    read -p "$1 ([y]es or [N]o): "
+    case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
+        y|yes) echo "yes" ;;
+        *)     echo "no" ;;
+    esac
+}
+if [[ "yes" == $(ask_yes_or_no "Is the harddisk bigger then 2TB?" ]]
+then
+wget -q https://github.com/ezraholm50/BerryCloud/raw/master/gpt_usb.sh -P $SCRIPTS/
+bash $SCRIPTS/gpt_usb.sh
+else
 bash $SCRIPTS/external_usb.sh
+fi
 
 else
         # Want to do this later? 
