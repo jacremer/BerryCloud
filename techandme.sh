@@ -21,7 +21,7 @@ echo -e "\e[32m"################################################################
 bash /var/scripts/update_checker.sh
 bash $DIR/90-updates-available
 ## Remove this on fix
-echo "PLEASE DO NOT UPDATE TO 16.04, IT BREAKS THE INSTALLATION. I WILL FIX THIS ASAP AND LET YOU KNOW VIA THE WIKI/README.
+echo "PLEASE DO NOT UPDATE TO 16.04, IT BREAKS THE INSTALLATION. I WILL FIX THIS ASAP AND LET YOU KNOW VIA THE WIKI/README."
 bash $DIR/91-release-upgrade
 bash $DIR/98-fsck-at-reboot
 bash $DIR/98-reboot-required
