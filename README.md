@@ -4,7 +4,9 @@ Note: RaspberryPI3 is now supported! (please read the how to wiki page)
 Originated from the ownCloud & Western Digital collaboration to make an out of the box safe cloud storage available to the public. This build has not been selected to be distributed, nevertheless we decided to finish the build.
 
 * Please visit this [Github Wiki](https://github.com/ezraholm50/BerryCloud/wiki) for instructions.
-* Updating with do-release-upgrade will break the installation
+
+
+* Updating with do-release-upgrade from Ubuntu 15.10 to 16.04 will break the installation
 * Please run this command from terminal:
 
 
