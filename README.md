@@ -8,7 +8,7 @@ Originated from the ownCloud & Western Digital collaboration to make an out of t
 * Please run this command from terminal:
 
 
-'''sudo cd /tmp && sudo wget https://github.com/ezraholm50/BerryCloud/raw/master/dist_upgrade_wily2xenial.sh && sudo bash dist_upgrade_wily2xenial.sh'''
+```sudo cd /tmp && sudo wget https://github.com/ezraholm50/BerryCloud/raw/master/dist_upgrade_wily2xenial.sh && sudo bash dist_upgrade_wily2xenial.sh```
 
 
 **The build includes:**
