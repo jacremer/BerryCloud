@@ -66,7 +66,7 @@ partprobe
 mount /dev/mmcblk0p1 /mnt
 sed -i 's|root=/dev/mmcblk0p2|root=/dev/sda2|g' /mnt/cmdline.txt
 sed -i 's| rootwait||g' /mnt/cmdline.txt
-sed -i 's| rootdelay||g' /mnt/cmdline.txt
+sed -i 's| rootdelay|rootdelay=5|g' /mnt/cmdline.txt
 umount /mnt
 
 # External HD
@@ -77,7 +77,10 @@ sleep 2
 sed -i 's|/dev/mmcblk0p2|#/dev/mmcblk0p2|g' /etc/fstab # change ROOT device so the system will know which one to use as ROOT
 echo "/dev/sda2 / ext4 errors=remount-ro 0 1" >> /etc/fstab # fix for the update to 16.04 xenial
 echo -ne '\n' | sudo mke2fs -t ext4 -b 4096 -L 'PI_ROOT' /dev/sda2 # make ext4 partition to hold ROOT
-dd bs=4M conv=sync,noerror if=/dev/mmcblk0p2 of=/dev/sda2 # copy the content of the SD ROOT partition to the new HD ROOT partition
+#dd bs=4M conv=sync,noerror if=/dev/mmcblk0p2 of=/dev/sda2 # copy the content of the SD ROOT partition to the new HD ROOT partition
+mount /dev/sda2 /mnt
+sudo rsync -aAXv / /mnt
+umount /mnt
 
 # Remove SD card ROOT partition
 #fdisk /dev/mmcblk0 << EOF
