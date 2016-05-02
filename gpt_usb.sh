@@ -65,7 +65,7 @@ partprobe
 mount /dev/mmcblk0p1 /mnt
 sed -i 's|root=/dev/mmcblk0p2|root=/dev/sda2|g' /mnt/cmdline.txt
 sed -i 's| rootwait||g' /mnt/cmdline.txt
-sed -i 's| rootdelay|rootdelay=5|g' /mnt/cmdline.txt
+sed -i 's| rootdelay| rootdelay=5|g' /mnt/cmdline.txt
 umount /mnt
 
 # External HD
