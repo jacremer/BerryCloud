@@ -66,8 +66,7 @@ if 		[ -f /swapfile ];
       		resize2fs /dev/mmcblk0p2
 		clear
       	else
-           	resize2fs /dev/sda2
-		clear
+           	clear
 fi
 
 # Change IP
