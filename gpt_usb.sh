@@ -6,7 +6,6 @@ device='/dev/sda'
 SDCARD='/dev/mmcblk0'
 ROOT_PROFILE='/root/.profile'
 ADDRESS=$(ip route get 1 | awk '{print $NF;exit}')
-
 # Use external harddrive to mount os and sd card to boot
 function ask_yes_or_no() {
     read -p "$1 ([y]es or [N]o): "
@@ -78,18 +77,6 @@ sed -i 's|/dev/mmcblk0p2|#/dev/mmcblk0p2|g' /etc/fstab # change ROOT device so t
 echo "/dev/sda2 / ext4 errors=remount-ro 0 1" >> /etc/fstab # fix for the update to 16.04 xenial
 echo -ne '\n' | sudo mke2fs -t ext4 -b 4096 -L 'PI_ROOT' /dev/sda2 # make ext4 partition to hold ROOT
 dd bs=4M conv=sync,noerror if=/dev/mmcblk0p2 of=/dev/sda2 # copy the content of the SD ROOT partition to the new HD ROOT partition
-
-# Rezise HD
-fdisk $device << EOF
-n
-p
-2
-
-
-w
-EOF
-sync
-partprobe
 
 # Remove SD card ROOT partition
 #fdisk /dev/mmcblk0 << EOF
