@@ -150,7 +150,7 @@ if 		[ -f /swapfile ];
 	then
       		sleep 1
       	else
-      		fallocate -l 4096M /swapfile # create swapfile and set size
+      		fallocate -l 2048M /swapfile # create swapfile and set size
       		chmod 600 /swapfile # give it the right permissions
       		mkswap /swapfile # format as swap
       		swapon /swapfile # announce to system
