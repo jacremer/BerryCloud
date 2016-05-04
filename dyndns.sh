@@ -4,6 +4,7 @@
 # Tech and Me, 2016 - www.techandme.se
 #
 # Option to set Dynamic Dns updates
+IFACE=$($IP -o link show | awk '{print $2,$9}' | grep "UP" | cut -d ":" -f 1)
 function ask_yes_or_no() {
     read -p "$1 ([y]es or [N]o): "
     case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
