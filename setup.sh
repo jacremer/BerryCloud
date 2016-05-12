@@ -7,6 +7,7 @@ SHUF=$(shuf -i 20-25 -n 1)
 MYSQL_PASS=$(cat /dev/urandom | tr -dc "a-zA-Z0-9@#*=" | fold -w $SHUF | head -n 1)
 ROOT_PASS=$(cat /dev/urandom | tr -dc "a-zA-Z0-9@#*=" | fold -w $SHUF | head -n 1)
 PW_FILE=/var/mysql_password.txt
+PW_FILE1=/var/root_password.txt
 # ownCloud
 CONFIG=$HTML/owncloud/config/config.php
 OCVERSION=owncloud-9.0.2.zip
@@ -443,16 +444,17 @@ bash $SCRIPTS/setup_secure_permissions_owncloud.sh
 clear
 
 # Show ROOT pass, and write it to a file in case the user fails to write it down
-echo
-echo "$ROOT_PASS" > $PW_FILE
-echo -e "Your ubuntu root password is: \e[32m$ROOT_PASS\e[0m"
-echo "Please save this somewhere safe. The root password is also saved in this file: $PW_FILE."
-echo "Also please remove it after you wrote it down on a piece of paper, much safer!"
-echo "Like this: sudo rm $PW_FILE"
-echo -e "\e[32m"
-read -p "Press any key to continue..." -n1 -s
-echo -e "\e[0m"
-sleep 5
+#echo
+#echo "$ROOT_PASS" > $PW_FILE1
+#$ROOT_PASS | sudo passwd
+#echo -e "Your ubuntu root password is: \e[32m$ROOT_PASS\e[0m"
+#echo "Please save this somewhere safe. The root password is also saved in this file: $PW_FILE1."
+#echo "Also please remove it after you wrote it down on a piece of paper, much safer!"
+#echo "Like this: sudo rm $PW_FILE1"
+#echo -e "\e[32m"
+#read -p "Press any key to continue..." -n1 -s
+#echo -e "\e[0m"
+#sleep 5
 
 # Change password
 echo -e "\e[0m"
