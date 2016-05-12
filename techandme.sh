@@ -21,7 +21,7 @@ echo -e "\e[32m"################################################################
 bash /var/scripts/update_checker.sh
 bash $DIR/90-updates-available
 ## Remove this on fix
-echo "Please read https://github.com/ezraholm50/BerryCloud/wiki if you want to upgrade to 16.04!"
+echo "Please read https://github.com/ezraholm50/BerryCloud/wiki/a-Update-Ubuntu-15.10-to-16.04 if you want to upgrade to 16.04!"
 bash $DIR/91-release-upgrade
 bash $DIR/98-fsck-at-reboot
 bash $DIR/98-reboot-required
