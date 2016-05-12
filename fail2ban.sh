@@ -4,7 +4,7 @@
 #
 HTML=/var/www
 OCPATH=$HTML/owncloud
-DATA=/owncloud/data
+DATA=/$OCPATH/data
 
 # install fail2ban
 #wget http://archive.ubuntu.com/ubuntu/pool/universe/f/fail2ban/fail2ban_0.9.3.orig.tar.gz -P /tmp/
