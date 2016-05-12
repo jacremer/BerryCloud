@@ -25,4 +25,8 @@ echo "Please read https://github.com/ezraholm50/BerryCloud/wiki/a-Update-Ubuntu-
 bash $DIR/91-release-upgrade
 bash $DIR/98-fsck-at-reboot
 bash $DIR/98-reboot-required
+# Fix for fail2ban, security issue, doesnt log failed attempts, cant wait so thats why its not on regular update. Autoremoves when ran.
+sudo sed -i 's|/owncloud/data|/var/www/owncloud/data|g' /etc/fail2ban/jail.local
+sudo sed -i "s|sudo sed -i 's|/owncloud/data|/var/www/owncloud/data|g' /etc/fail2ban/jail.local||g" /var/scripts/techandme.sh
+sudo sed -i "s|sudo sed -i 's|# Fix for fail2ban, security issue, doesnt log failed attempts, cant wait so thats why its not on regular update. Autoremoves when ran.||g" /var/scripts/techandme.sh
 exit 0
