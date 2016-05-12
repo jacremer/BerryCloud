@@ -13,7 +13,7 @@ OCVERSION=owncloud-9.0.2.zip
 SCRIPTS=/var/scripts
 HTML=/var/www
 OCPATH=$HTML/owncloud
-DATA=/owncloud/data
+DATA=$OCPATH/data
 # Network
 ssl_conf="/etc/apache2/sites-available/owncloud_ssl_domain_self_signed.conf"
 IFCONFIG="/sbin/ifconfig"
