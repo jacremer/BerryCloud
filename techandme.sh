@@ -14,7 +14,7 @@ echo "WAN IP:   type: sudo WAN"
 echo "LAN IP:   $ADDRESS"
 echo "MAC ADR:  $MAC"
 echo "Webmin:   https://$ADDRESS:10000"
-echo "ownCloud: https://$ADDRESS/owncloud"
+echo "ownCloud: https://$ADDRESS"
 echo -e "\e[32m"###################################################################"\e[0m"
 bash $DIR/50-landscape-sysinfo
 echo -e "\e[32m"###################################################################"\e[0m"
