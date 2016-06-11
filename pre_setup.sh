@@ -22,6 +22,22 @@ apt-get update && apt-get upgrade -y && apt-get -f install -y
 apt-get install systemd rsyslog module-init-tools miredo libminiupnpc10 ntpdate landscape-common -y
 dpkg --configure --pending
 
+# Libreoffice
+apt-get install --no-install-recommends libreoffice-writer -y
+
+# Install packages for Webmin
+apt-get install -y zip perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
+
+# Install Webmin
+echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list
+wget -q http://www.webmin.com/jcameron-key.asc -O- | sudo apt-key add -
+apt-get update
+apt-get install -y webmin
+echo
+echo "Webmin is installed, access it from your browser: https://$ADDRESS:10000"
+sleep 2
+clear
+
 # Add update checker to daily cron
 
 if 		[ -f /etc/cron.daily/update_checker_cron.sh ];
@@ -46,6 +62,7 @@ apt-key add raspberrypi.gpg.key
 apt-get update
 apt-get install libraspberrypi-bin -y
 curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+rpi-update
 
 # Restore sources
 cp /etc/apt/sources.list.bak /etc/apt/sources.list
