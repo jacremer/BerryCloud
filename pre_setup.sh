@@ -19,7 +19,7 @@ fi
 
 # Upgrade and install
 apt-get update && apt-get upgrade -y && apt-get -f install -y
-apt-get install systemd rsyslog module-init-tools miredo libminiupnpc10 ntpdate -y
+apt-get install systemd rsyslog module-init-tools miredo libminiupnpc10 ntpdate landscape-common -y
 dpkg --configure --pending
 
 # Add update checker to daily cron
@@ -32,9 +32,12 @@ if 		[ -f /etc/cron.daily/update_checker_cron.sh ];
 fi
 
 # Get the latest update checker daily
-echo "rm /var/scripts/update_checker.sh" >> /etc/cron.daily/fresh_update_checker.sh
-echo "wget https://github.com/ezraholm50/BerryCloud/raw/master/update_checker.sh -P /var/scripts/" > /etc/cron.daily/fresh_update_checker.sh
-chmod 750 /etc/cron.daily/fresh_update_checker.sh
+#echo "rm /var/scripts/update_checker.sh" >> /etc/cron.daily/fresh_update_checker.sh
+#echo "wget https://github.com/ezraholm50/BerryCloud/raw/master/update_checker.sh -P /var/scripts/" > /etc/cron.daily/fresh_update_checker.sh
+#chmod 750 /etc/cron.daily/fresh_update_checker.sh
+
+# Backup sources
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
 # Install rpi-update
 echo "deb http://archive.raspberrypi.org/debian/ jessie main" > /etc/apt/sources.list
@@ -44,64 +47,9 @@ apt-get update
 apt-get install libraspberrypi-bin -y
 curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
 
-#Make sure rpi-config doesnt use the wrong repo's
-cat <<-UPDATE > "/etc/cron.weekly/rpi_update.sh"
-#!/bin/bash
-#
-# Tech and Me, 2016 - www.techandme.se
-#
-rpi-update
-rm /etc/apt/sources.list
-cat <<-SOURCES > "/etc/apt/sources.list"
-# Tech and Me, 2016 - www.techandme.se
-# See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
-# newer versions of the distribution.
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily main restricted universe
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily-updates main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily-updates main restricted universe
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily-security main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily-security main restricted universe
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily-backports main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily-backports main restricted universe
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily-proposed main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily-proposed main restricted universe
-
-deb http://download.webmin.com/download/repository sarge contrib
-deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
-SOURCES
-UPDATE
-rpi-update
-chmod 750 /etc/cron.daily/rpi-update.sh
-rm /etc/apt/sources.list
-cat <<-SOURCES > "/etc/apt/sources.list"
-# Tech and Me, 2016 - www.techandme.se
-# See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
-# newer versions of the distribution.
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily main restricted universe
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily-updates main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily-updates main restricted universe
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily-security main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily-security main restricted universe
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily-backports main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily-backports main restricted universe
-
-deb http://ports.ubuntu.com/ubuntu-ports/ wily-proposed main restricted universe
-deb-src http://ports.ubuntu.com/ubuntu-ports/ wily-proposed main restricted universe
-
-deb http://download.webmin.com/download/repository sarge contrib
-deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
-SOURCES
+# Restore sources
+cp /etc/apt/sources.list.bak /etc/apt/sources.list
+apt-get update
 
 # Get the latest login screen
 rm /var/scripts/techandme.sh
@@ -180,7 +128,6 @@ mesg n
 ROOT-PROFILE
 
 # Change back rc.local
-
 rm /etc/rc.local
 
 cat << RCLOCAL > "/etc/rc.local"
