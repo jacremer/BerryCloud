@@ -5,7 +5,7 @@
 SCRIPTS="/var/scripts"
 WWW="/var/www"
 LETS_ENC="https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/lets-encrypt"
-REPO="https://raw.githubusercontent.com/ezraholm50/BerryCloud/master"
+REPO="https://raw.githubusercontent.com/ezraholm50/BerryCloud/16.04"
 ENOCH="https://raw.githubusercontent.com/enoch85/ownCloud-VM/master/static"
 
 # Get new server keys
